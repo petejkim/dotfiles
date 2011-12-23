@@ -1,6 +1,6 @@
 --type-add=ruby=.rsel,.thor,.ru,.builder
---type-add=html=.haml
---type-add=css=.sass,.scss
+--type-add=html=.haml,.jade,.ejs
+--type-add=css=.sass,.scss,.less
 --type-add=js=.coffee
 --type-set=markdown=.markdown,.md,.mdown
 --type-set=cucumber=.feature
