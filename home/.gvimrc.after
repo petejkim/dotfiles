@@ -1,4 +1,4 @@
 color Railscasts-pete
 set guifont=Meslo\ LG\ L\ DZ:h13
-iunmap <Leader>=
+set guioptions-=T
 
