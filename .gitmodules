@@ -10,3 +10,9 @@
 [submodule "home/.janus/vim-stylus"]
 	path = home/.janus/vim-stylus
 	url = https://github.com/wavded/vim-stylus.git
+[submodule "home/.janus/vim-cocoa"]
+	path = home/.janus/vim-cocoa
+	url = https://github.com/msanders/cocoa.vim
+[submodule "home/.janus/vim-css-color"]
+	path = home/.janus/vim-css-color
+	url = https://github.com/ap/vim-css-color/

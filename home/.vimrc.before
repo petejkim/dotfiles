@@ -1,2 +1,4 @@
+call janus#disable_plugin('watch_tower')
+call janus#disable_plugin('css-color')
 let mapleader = ","
 
