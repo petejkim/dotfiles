@@ -5,4 +5,5 @@
 --type-set=markdown=.markdown,.md,.mdown
 --type-set=cucumber=.feature
 --type-set=config=.conf,.ini,.cfg
+-G^(?!vendor|log|tmp|doc|coverage).*$
 
