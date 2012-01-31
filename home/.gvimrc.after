@@ -2,3 +2,8 @@ color Railscasts-pete
 set guifont=Meslo\ LG\ L\ DZ:h13
 set guioptions-=T
 
+if has("gui_macvim") && has("gui_running")
+  macmenu &File.New\ Tab key=<D-s-t>
+  macmenu &File.Open\ Tab\.\.\. key=<nop>
+endif
+

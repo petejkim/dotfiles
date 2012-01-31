@@ -13,3 +13,6 @@
 [submodule "home/.janus/vim-cocoa"]
 	path = home/.janus/vim-cocoa
 	url = https://github.com/msanders/cocoa.vim
+[submodule "home/.janus/vim-command-t"]
+	path = home/.janus/vim-command-t
+	url = git://git.wincent.com/command-t.git
