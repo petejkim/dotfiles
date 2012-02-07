@@ -87,8 +87,8 @@ set encoding=utf-8
 "------------------------------------------------------------------------------
 " editing
 "
-set showmatch      " Show matching brackets
-set matchtime=5    " bracket blinking
+"set showmatch      " Show matching brackets
+"set matchtime=5    " bracket blinking
 set showcmd        " show incomplete commands in lower right hand corner
 "set hidden        " current buffer can be put to the background without writing to disk
 
@@ -197,16 +197,82 @@ endif
 "------------------------------------------------------------------------------
 " other settings
 "
-
+"
+" https://github.com/carlhuda/janus/blob/master/janus/vim/tools/janus/after/plugin/syntastic.vim
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=0
 let g:syntastic_auto_loc_list=2
+
+" https://github.com/carlhuda/janus/blob/master/janus/vim/tools/janus/after/plugin/nerdtree.vim
+if has("autocmd")
+  let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o', '\~$']
+  let NERDTreeHijackNetrw = 0
+
+  augroup AuNERDTreeCmd
+  autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
+  autocmd AuNERDTreeCmd FocusGained * call s:UpdateNERDTree()
+
+  " If the parameter is a directory, cd into it
+  function s:CdIfDirectory(directory)
+    let explicitDirectory = isdirectory(a:directory)
+    let directory = explicitDirectory || empty(a:directory)
+
+    if explicitDirectory
+      exe "cd " . fnameescape(a:directory)
+    endif
+
+    " Allows reading from stdin
+    " ex: git diff | mvim -R -
+    if strlen(a:directory) == 0
+      return
+    endif
+
+    if directory
+      NERDTree
+      wincmd p
+      bd
+    endif
+
+    if explicitDirectory
+      wincmd p
+    endif
+  endfunction
+
+  " NERDTree utility function
+  function s:UpdateNERDTree(...)
+    let stay = 0
+
+    if(exists("a:1"))
+      let stay = a:1
+    end
+
+    if exists("t:NERDTreeBufName")
+      let nr = bufwinnr(t:NERDTreeBufName)
+      if nr != -1
+        exe nr . "wincmd w"
+        exe substitute(mapcheck("R"), "<CR>", "", "")
+        if !stay
+          wincmd p
+        end
+      endif
+    endif
+
+    if exists(":CommandTFlush") == 2
+      CommandTFlush
+    endif
+  endfunction
+endif
 
 "------------------------------------------------------------------------------
 " mappings
 " https://raw.github.com/carlhuda/janus/master/janus/vim/core/before/plugin/mappings.vim
 "
 let mapleader=","
+
+map <C-c> <ESC>
+
+map <leader>] :tabnext<CR>
+map <leader>[ :tabprevious<CR>
 
 " use :w!! to write to a file using sudo if you forgot to 'sudo vim file'
 cmap w!! %!sudo tee > /dev/null %
@@ -279,6 +345,14 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/"
 map <C-t> :CommandT<CR>
 imap <C-t> <ESC>:CommandT<CR>
 let CommandTMaxHeight=10
+
+" fugitive
+nmap <leader>gb :Gblame<CR>
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gd :Gdiff<CR>
+nmap <leader>gl :Glog<CR>
+nmap <leader>gc :Gcommit<CR>
+nmap <leader>gp :Git push<CR>
 
 " unimpaired
 " Bubble single lines

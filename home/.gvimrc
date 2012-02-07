@@ -10,18 +10,14 @@ if has("gui_running")
   if has("autocmd")
     autocmd VimResized * wincmd =   " resize buffers when window is resized
 
-    if exists("g:autosave_on_blur")
-      au FocusLost * silent! wall   " autosave on blur if enabled
-    endif
+    "if exists("g:autosave_on_blur")
+      "au FocusLost * silent! wall   " autosave on blur if enabled
+    "endif
   endif
 
   if has("gui_macvim")
     macmenu &File.New\ Tab key=<D-s-t>      " remap new tab
     macmenu &File.Open\ Tab\.\.\. key=<nop>
-
-    if exists("g:enable_mvim_shift_arrow")
-      let macvim_hig_shift_movement = 1     " mvim shift-arrow-keys
-    endif
   endif
 
   "------------------------------------------------------------------------------
