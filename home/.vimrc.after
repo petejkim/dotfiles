@@ -1,5 +1,0 @@
-set wildignore+=*/vendor/bundle/*
-map <D-t> :CommandT<CR>
-map <C-t> :CommandT<CR>
-let CommandTMaxHeight = 10
-
