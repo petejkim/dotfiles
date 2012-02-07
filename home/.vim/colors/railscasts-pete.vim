@@ -30,8 +30,9 @@ hi Normal                    guifg=#E6E1DC guibg=#2B2B2B
 hi Cursor                    guibg=#FFFFFF
 hi CursorLine                guibg=#333435
 hi LineNr                    guifg=#888888 guibg=#353535
-hi Search                    guibg=#5A647E
 hi Visual                    guibg=#5A647E
+hi VertSplit                 guifg=#E6E1DC guibg=#E6E1DC
+hi Search                    guibg=#5A647E
 
 " Folds
 " -----
