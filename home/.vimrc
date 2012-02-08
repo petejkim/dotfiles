@@ -15,6 +15,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'scrooloose/nerdtree'
 Bundle 'mileszs/ack.vim'
 Bundle 'wincent/Command-T'
+Bundle 'fholgado/minibufexpl.vim'
 
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
@@ -90,7 +91,7 @@ set encoding=utf-8
 "set showmatch      " Show matching brackets
 "set matchtime=5    " bracket blinking
 set showcmd        " show incomplete commands in lower right hand corner
-"set hidden        " current buffer can be put to the background without writing to disk
+set hidden         " current buffer can be put to the background without writing to disk
 
 "------------------------------------------------------------------------------
 " whitespaces
@@ -271,8 +272,11 @@ let mapleader=","
 
 map <C-c> <ESC>
 
-map <leader>] :tabnext<CR>
-map <leader>[ :tabprevious<CR>
+map <leader>] :tabn<CR>
+map <leader>[ :tabp<CR>
+
+nmap <leader>; :bn<CR>
+nmap <leader>' :bp<CR>
 
 " use :w!! to write to a file using sudo if you forgot to 'sudo vim file'
 cmap w!! %!sudo tee > /dev/null %
@@ -281,15 +285,6 @@ cmap w!! %!sudo tee > /dev/null %
 nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
 imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
 
-" Next buffer
-nmap <silent> ,. :bnext<CR>
-
-" Previous buffer
-nmap <silent> ,m :bprev<CR>
-
-" Next tab
-nmap <silent> ;' :tabnext<CR>
-nmap <silent> ;l :tabprev<CR>
 " upper/lower word
 nmap <leader>u mQviwU`Q
 nmap <leader>l mQviwu`Q
@@ -339,7 +334,7 @@ map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
 
 " Insert the current directory into a command-line path
-cmap <C-P> <C-R>=expand("%:p:h") . "/"
+cmap <C-P> <C-R>=expand("%:p:h") . "/"<CR>
 
 " command-t
 map <C-t> :CommandT<CR>
