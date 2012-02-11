@@ -13,6 +13,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'scrooloose/nerdtree'
+"Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'mileszs/ack.vim'
 Bundle 'wincent/Command-T'
 Bundle 'fholgado/minibufexpl.vim'
@@ -53,6 +54,7 @@ Bundle 'wavded/vim-stylus'
 Bundle 'tpope/vim-haml'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'nono/vim-handlebars'
+Bundle 'tpope/vim-liquid'
 
 Bundle 'msanders/cocoa.vim'
 "Bundle 'Rip-Rip/clang_complete'
@@ -84,6 +86,10 @@ set number
 set ruler          " show line and column number
 syntax enable
 set encoding=utf-8
+set visualbell     " shut vim up
+set noerrorbells
+set nobackup
+"set mouse=a
 
 "------------------------------------------------------------------------------
 " editing
@@ -204,64 +210,11 @@ let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=0
 let g:syntastic_auto_loc_list=2
 
-" https://github.com/carlhuda/janus/blob/master/janus/vim/tools/janus/after/plugin/nerdtree.vim
+let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o', '\~$']
+let g:nerdtree_tabs_open_on_gui_startup = 0
+
 if has("autocmd")
-  let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o', '\~$']
-  let NERDTreeHijackNetrw = 0
-
-  augroup AuNERDTreeCmd
-  autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
-  autocmd AuNERDTreeCmd FocusGained * call s:UpdateNERDTree()
-
-  " If the parameter is a directory, cd into it
-  function s:CdIfDirectory(directory)
-    let explicitDirectory = isdirectory(a:directory)
-    let directory = explicitDirectory || empty(a:directory)
-
-    if explicitDirectory
-      exe "cd " . fnameescape(a:directory)
-    endif
-
-    " Allows reading from stdin
-    " ex: git diff | mvim -R -
-    if strlen(a:directory) == 0
-      return
-    endif
-
-    if directory
-      NERDTree
-      wincmd p
-      bd
-    endif
-
-    if explicitDirectory
-      wincmd p
-    endif
-  endfunction
-
-  " NERDTree utility function
-  function s:UpdateNERDTree(...)
-    let stay = 0
-
-    if(exists("a:1"))
-      let stay = a:1
-    end
-
-    if exists("t:NERDTreeBufName")
-      let nr = bufwinnr(t:NERDTreeBufName)
-      if nr != -1
-        exe nr . "wincmd w"
-        exe substitute(mapcheck("R"), "<CR>", "", "")
-        if !stay
-          wincmd p
-        end
-      endif
-    endif
-
-    if exists(":CommandTFlush") == 2
-      CommandTFlush
-    endif
-  endfunction
+  autocmd VimEnter * silent! lcd %:p:h
 endif
 
 "------------------------------------------------------------------------------
@@ -277,6 +230,15 @@ map <leader>[ :tabp<CR>
 
 nmap <leader>; :bn<CR>
 nmap <leader>' :bp<CR>
+
+" much more natural cursor movement when wrapping lines are present
+map j gj
+map k gk
+map <Down> gj
+map <Up> gk
+
+" Toggle hlsearch
+nmap <leader>. :set hlsearch! hlsearch?<cr>
 
 " use :w!! to write to a file using sudo if you forgot to 'sudo vim file'
 cmap w!! %!sudo tee > /dev/null %
@@ -318,13 +280,6 @@ nmap <silent> <leader>tw :set invwrap<CR>:set wrap?<CR>
 
 " find merge conflict markers
 nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
-
-" Map the arrow keys to be based on display lines, not physical lines
-map <Down> gj
-map <Up> gk
-
-" Toggle hlsearch with <leader>hs
-nmap <leader>hs :set hlsearch! hlsearch?<CR>
 
 " Adjust viewports to the same size
 map <Leader>= <C-w>=
