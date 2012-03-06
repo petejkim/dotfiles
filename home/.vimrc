@@ -228,8 +228,8 @@ map <C-c> <ESC>
 map <leader>] :tabn<CR>
 map <leader>[ :tabp<CR>
 
-nmap <leader>; :bn<CR>
-nmap <leader>' :bp<CR>
+nmap <leader>; :bp<CR>
+nmap <leader>' :bn<CR>
 
 " much more natural cursor movement when wrapping lines are present
 map j gj
