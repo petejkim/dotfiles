@@ -1,4 +1,4 @@
-export PATH="$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:$PATH"
+export PATH=".bundle/bin:$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:$PATH"
 
 export DISPLAY=":0.0"
 export CLICOLOR=1
@@ -19,9 +19,10 @@ alias l='ls -l'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
-alias rspec='bundle exec rspec'
-alias rspecd='bundle exec rspec --drb'
-alias guard='bundle exec guard'
+
+alias bi='bundle install --binstubs=.bundle/bin'
+alias gpom='git push origin master'
+alias gpr='git pull --rebase'
 
 eval "$(rbenv init -)"
 
