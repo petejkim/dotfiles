@@ -59,8 +59,8 @@ if has("gui_running")
   imap <D-8> <Esc>9gt
 
   " command-t
-  map <D-t> :CommandT<CR>
-  imap <D-t> <ESC>:CommandT<CR>
+  map <D-t> :CommandTFlush<CR>:CommandT<CR>
+  imap <D-t> <ESC>:CommandTFlush<CR>:CommandT<CR>
 
   " unimpaired
   " Bubble single lines
