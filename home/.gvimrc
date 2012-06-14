@@ -2,7 +2,7 @@ if has("gui_running")
   "------------------------------------------------------------------------------
   " basic settings
   "
-  colorscheme railscasts-pete
+  colorscheme mac_classic-pete
   set guifont=Meslo\ LG\ L\ DZ:h13
   set guioptions-=T      " remove tool bar
   set clipboard+=unnamed " yanks go to clipboard

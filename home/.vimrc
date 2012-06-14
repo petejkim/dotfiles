@@ -17,6 +17,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'mileszs/ack.vim'
 Bundle 'wincent/Command-T'
 Bundle 'fholgado/minibufexpl.vim'
+Bundle 'vim-scripts/bufkill.vim'
 
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
@@ -168,7 +169,7 @@ if has("autocmd")
   au BufNewFile,BufRead *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
   au BufNewFile,BufRead *.json set ft=javascript
   au BufNewFile,BufRead Podfile,*.podspec set filetype=ruby
-  au BufNewFile,BufRead *.hamlc set filetype=haml
+  au BufNewFile,BufRead *.hamlc,*.hbs.haml set filetype=haml
 endif
 
 "------------------------------------------------------------------------------
