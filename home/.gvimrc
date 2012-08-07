@@ -2,10 +2,9 @@ if has("gui_running")
   "------------------------------------------------------------------------------
   " basic settings
   "
-  colorscheme mac_classic-pete
   set guifont=Meslo\ LG\ L\ DZ:h13
   set guioptions-=T      " remove tool bar
-  set clipboard+=unnamed " yanks go to clipboard
+  colorscheme solarized
 
   if has("autocmd")
     autocmd VimResized * wincmd =   " resize buffers when window is resized
@@ -59,8 +58,10 @@ if has("gui_running")
   imap <D-8> <Esc>9gt
 
   " command-t
-  map <D-t> :CommandTFlush<CR>:CommandT<CR>
-  imap <D-t> <ESC>:CommandTFlush<CR>:CommandT<CR>
+  map <D-t> :CommandT<CR>
+  imap <D-t> <ESC>:CommandT<CR>
+  map <D-O> :CommandTFlush<CR>:CommandT<CR>
+  imap <D-O> <ESC>:CommandTFlush<CR>:CommandT<CR>
 
   " unimpaired
   " Bubble single lines

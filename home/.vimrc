@@ -68,6 +68,7 @@ Bundle 'tpope/vim-markdown'
 Bundle 'timcharper/textile.vim'
 
 Bundle 'vim-scripts/csv.vim'
+Bundle 'altercation/vim-colors-solarized'
 
 "------------------------------------------------------------------------------
 filetype plugin indent on
@@ -90,6 +91,7 @@ set encoding=utf-8
 set visualbell     " shut vim up
 set noerrorbells
 set nobackup
+set clipboard+=unnamed " yanks go to clipboard
 "set mouse=a
 
 "------------------------------------------------------------------------------
@@ -132,7 +134,7 @@ set smartcase  " unless there is one capital letter
 set wildmode=longest,list
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*,*/vendor/bundle/*
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*,*/vendor/bundle/*,*/tmp/*
 set wildignore+=*.swp,*~,._*
 
 "------------------------------------------------------------------------------
@@ -351,6 +353,7 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/"<CR>
 " command-t
 map <C-t> :CommandTFlush<CR>:CommandT<CR>
 imap <C-t> <ESC>:CommandTFlush<CR>:CommandT<CR>
+map <leader>t :CommandTFlush<CR>:CommandT<CR>
 let CommandTMaxHeight=10
 
 " fugitive
