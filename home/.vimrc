@@ -94,6 +94,12 @@ set nobackup
 set clipboard+=unnamed " yanks go to clipboard
 "set mouse=a
 
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_visibility="high"
+set background=dark
+colorscheme solarized
+
 "------------------------------------------------------------------------------
 " editing
 "
