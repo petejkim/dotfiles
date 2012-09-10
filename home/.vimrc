@@ -15,14 +15,15 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'scrooloose/nerdtree'
 "Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'mileszs/ack.vim'
-Bundle 'wincent/Command-T'
-Bundle 'fholgado/minibufexpl.vim'
+"Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
+"Bundle 'fholgado/minibufexpl.vim'
 Bundle 'vim-scripts/bufkill.vim'
 
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
-Bundle 'vim-scripts/ZoomWin'
+"Bundle 'vim-scripts/ZoomWin'
 Bundle 'vim-scripts/Rename2'
 
 "Bundle 'sjl/gundo.vim'
@@ -34,11 +35,10 @@ Bundle 'nathanaelkane/vim-indent-guides'
 " languages
 
 Bundle 'tpope/vim-git'
-
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'skwp/vim-rspec'
-Bundle 'tpope/vim-cucumber'
+"Bundle 'tpope/vim-cucumber'
 
 Bundle 'pangloss/vim-javascript'
 Bundle 'mmalecki/vim-node.js'
@@ -48,28 +48,28 @@ Bundle 'briancollins/vim-jst'
 
 Bundle 'othree/html5.vim'
 Bundle 'hail2u/vim-css3-syntax'
-Bundle 'ap/vim-css-color'
+"Bundle 'ap/vim-css-color'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'groenewege/vim-less'
-Bundle 'wavded/vim-stylus'
+"Bundle 'wavded/vim-stylus'
 Bundle 'tpope/vim-haml'
-Bundle 'digitaltoad/vim-jade'
+"Bundle 'digitaltoad/vim-jade'
 Bundle 'nono/vim-handlebars'
-Bundle 'tpope/vim-liquid'
+"Bundle 'tpope/vim-liquid'
 
-Bundle 'msanders/cocoa.vim'
+"Bundle 'msanders/cocoa.vim'
 "Bundle 'Rip-Rip/clang_complete'
 
 "Bundle 'github.com/ajf/puppet-vim'
-Bundle 'bdd/vim-scala'
+"Bundle 'bdd/vim-scala'
 "Bundle 'vim-scripts/Arduino-syntax-file'
 
 Bundle 'tpope/vim-markdown'
-Bundle 'timcharper/textile.vim'
+"Bundle 'timcharper/textile.vim'
 
 Bundle 'vim-scripts/csv.vim'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'godlygeek/csapprox'
+"Bundle 'godlygeek/csapprox'
 Bundle 'Lokaltog/vim-powerline'
 
 "------------------------------------------------------------------------------
@@ -141,8 +141,8 @@ set ignorecase " searches are case insensitive
 set smartcase  " unless there is one capital letter
 
 " scrolling
-set scrolloff=9
-set sidescrolloff=9
+set scrolloff=5
+set sidescrolloff=5
 set sidescroll=1
 
 "------------------------------------------------------------------------------
@@ -387,10 +387,16 @@ map! <S-Insert> <MiddleMouse>
 cmap <C-P> <C-R>=expand("%:p:h") . "/"<CR>
 
 " command-t
-map <C-t> :CommandTFlush<CR>:CommandT<CR>
-imap <C-t> <ESC>:CommandTFlush<CR>:CommandT<CR>
-map <leader>t :CommandTFlush<CR>:CommandT<CR>
-let CommandTMaxHeight=10
+"map <C-t> :CommandTFlush<CR>:CommandT<CR>
+"imap <C-t> <ESC>:CommandTFlush<CR>:CommandT<CR>
+"map <leader>t :CommandTFlush<CR>:CommandT<CR>
+"let CommandTMaxHeight=10
+
+" ctrl-p
+map <C-t> :CtrlPMixed<CR>
+imap <C-t> <ESC>:CtrlPMixed<CR>
+map <leader>t :CtrlP<CR>
+map <leader>b :CtrlPBuffer<CR>
 
 " fugitive
 nmap <leader>gb :Gblame<CR>
