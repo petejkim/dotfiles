@@ -69,6 +69,8 @@ Bundle 'timcharper/textile.vim'
 
 Bundle 'vim-scripts/csv.vim'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'godlygeek/csapprox'
+Bundle 'Lokaltog/vim-powerline'
 
 "------------------------------------------------------------------------------
 filetype plugin indent on
@@ -90,15 +92,10 @@ syntax enable
 set encoding=utf-8
 set visualbell     " shut vim up
 set noerrorbells
-set nobackup
+set history=1000
 set clipboard+=unnamed " yanks go to clipboard
+set autoread
 "set mouse=a
-
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-let g:solarized_visibility="high"
-set background=dark
-colorscheme solarized
 
 "------------------------------------------------------------------------------
 " editing
@@ -106,17 +103,26 @@ colorscheme solarized
 "set showmatch      " Show matching brackets
 "set matchtime=5    " bracket blinking
 set showcmd        " show incomplete commands in lower right hand corner
+set showmode
 set hidden         " current buffer can be put to the background without writing to disk
+
+" folds
+set foldmethod=indent
+set foldnestmax=3
+set nofoldenable
 
 "------------------------------------------------------------------------------
 " whitespaces
 "
+set autoindent
+set smartindent
+set smarttab     " smarter tab levels
 set nowrap       " don't wrap lines
 set textwidth=0
-set tabstop=2    " a tab is two spaces
 set shiftwidth=2 " autoindent is two spaces
+set softtabstop=2
+set tabstop=2    " a tab is two spaces
 set expandtab    " use spaces, not tabs
-set smarttab     " smarter tab levels
 set backspace=indent,eol,start " backspace through everything
 
 set list
@@ -134,20 +140,41 @@ set incsearch  " incremental searching
 set ignorecase " searches are case insensitive
 set smartcase  " unless there is one capital letter
 
+" scrolling
+set scrolloff=9
+set sidescrolloff=9
+set sidescroll=1
+
 "------------------------------------------------------------------------------
 " wild
 "
 set wildmode=longest,list
+set wildmenu
 set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
 set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*,*/vendor/bundle/*,*/tmp/*
+set wildignore+=vendor/gems/**,vendor/cache/**,.bundle/**,*/.sass-cache/*,vendor/bundle/**
+set wildignore+=log/**,tmp/**
 set wildignore+=*.swp,*~,._*
 
 "------------------------------------------------------------------------------
 " backup & swap
 "
-set backupdir=~/.vim/_backup// " backup
-set directory=~/.vim/_temp//   " swap
+set noswapfile
+set nobackup
+set nowb
+
+"persistent undo
+silent !mkdir ~/.vim/backups > /dev/null 2>&1
+set undodir=~/.vim/backups
+set undofile
+
+"colorscheme
+
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_visibility="high"
+set background=dark
+colorscheme solarized
 
 "------------------------------------------------------------------------------
 " filetypes
@@ -177,7 +204,7 @@ if has("autocmd")
   au BufNewFile,BufRead *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
   au BufNewFile,BufRead *.json set ft=javascript
   au BufNewFile,BufRead Podfile,*.podspec set filetype=ruby
-  au BufNewFile,BufRead *.hamlc,*.hbs.haml set filetype=haml
+  au BufNewFile,BufRead *.hamlc,*.hbs.haml,*.js.hamlbars set filetype=haml
 endif
 
 "------------------------------------------------------------------------------
@@ -187,33 +214,36 @@ endif
 if has("statusline") && !&cp
   set laststatus=2  " always show the status bar
 
-  " Without setting this, ZoomWin restores windows in a way that causes
-  " equalalways behavior to be triggered the next time CommandT is used.
-  " This is likely a bludgeon to solve some other issue, but it works
+  "" Without setting this, ZoomWin restores windows in a way that causes
+  "" equalalways behavior to be triggered the next time CommandT is used.
+  "" This is likely a bludgeon to solve some other issue, but it works
   set noequalalways
 
-  " Start the status line
-  set statusline=%f\ %m\ %r
+  "" Start the status line
+  "set statusline=%f\ %m\ %r
 
-  " fugitive
-  set statusline+=%{fugitive#statusline()}
+  "" fugitive
+  "set statusline+=%{fugitive#statusline()}
 
-  " syntastic
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
+  "" syntastic
+  "set statusline+=%#warningmsg#
+  "set statusline+=%{SyntasticStatuslineFlag()}
+  "set statusline+=%*
 
-  " Finish the statusline
-  set statusline+=Line:%l/%L[%p%%]
-  set statusline+=Col:%v
-  set statusline+=Buf:#%n
-  set statusline+=[%b][0x%B]
+  "" Finish the statusline
+  "set statusline+=Line:%l/%L[%p%%]
+  "set statusline+=Col:%v
+  "set statusline+=Buf:#%n
+  "set statusline+=[%b][0x%B]
 endif
 
 "------------------------------------------------------------------------------
 " other settings
 "
-"
+
+" ack-vim
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
 " https://github.com/carlhuda/janus/blob/master/janus/vim/tools/janus/after/plugin/syntastic.vim
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=0

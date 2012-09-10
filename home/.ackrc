@@ -1,5 +1,5 @@
 --type-add=ruby=.rsel,.thor,.ru,.builder,Podspec,Guardfile
---type-add=html=.haml,.jade,.ejs,.hamlc,.jst
+--type-add=html=.haml,.jade,.ejs,.hamlc,.jst,.hamlbars,.hbs,.handlebars
 --type-add=css=.sass,.scss,.less,.styl
 --type-add=js=.coffee
 --type-set=markdown=.markdown,.md,.mdown
