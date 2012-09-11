@@ -1,5 +1,5 @@
-"==============================================================================
 " Vundle
+"==============================================================================
 "
 set nocompatible
 filetype off
@@ -148,13 +148,26 @@ set sidescroll=1
 "------------------------------------------------------------------------------
 " wild
 "
-set wildmode=longest,list
+set wildmode=list:longest
 set wildmenu
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-set wildignore+=vendor/gems/**,vendor/cache/**,.bundle/**,*/.sass-cache/*,vendor/bundle/**
-set wildignore+=log/**,tmp/**
+set wildignore=*.o,*.out,*.obj,*.class
 set wildignore+=*.swp,*~,._*
+set wildignore+=*.png,*.jpg,*.gif
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+set wildignore+=.git,.svn
+set wildignore+=*vim/backups*
+set wildignore+=*sass-cache*
+set wildignore+=*DS_Store*
+set wildignore+=*/vendor/rails/**
+set wildignore+=*/vendor/cache/**
+set wildignore+=*/vendor/bundle/**
+set wildignore+=*/vendor/submodules/**
+set wildignore+=*/vendor/plugins/**
+set wildignore+=*/vendor/gems/**
+set wildignore+=*/.bundle/**
+set wildignore+=*.gem
+set wildignore+=*/log/**
+set wildignore+=*/tmp/**
 
 "------------------------------------------------------------------------------
 " backup & swap
@@ -393,10 +406,9 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/"<CR>
 "let CommandTMaxHeight=10
 
 " ctrl-p
-map <C-t> :CtrlPMixed<CR>
-imap <C-t> <ESC>:CtrlPMixed<CR>
+map <C-t> :CtrlP<CR>
+imap <C-t> <ESC>:CtrlP<CR>
 map <leader>t :CtrlP<CR>
-map <leader>b :CtrlPBuffer<CR>
 
 " fugitive
 nmap <leader>gb :Gblame<CR>
