@@ -1,9 +1,9 @@
 --type-add=ruby=.rsel,.thor,.ru,.builder,Podspec,Guardfile
 --type-add=html=.haml,.jade,.ejs,.hamlc,.jst,.hamlbars,.hbs,.handlebars
 --type-add=css=.sass,.scss,.less,.styl
---type-add=js=.coffee
+--type-add=js=.coffee,.json
 --type-set=markdown=.markdown,.md,.mdown
 --type-set=cucumber=.feature
 --type-set=config=.conf,.ini,.cfg
--G^(?!vendor|log|tmp|doc|coverage|node_module).*$
+-G^(?!.bundle|vendor|log|tmp|doc|coverage|node_module).*$
 

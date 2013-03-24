@@ -255,7 +255,7 @@ endif
 "
 
 " ack-vim
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+let g:ackprg="ag --nogroup --nocolor --column"
 
 " https://github.com/carlhuda/janus/blob/master/janus/vim/tools/janus/after/plugin/syntastic.vim
 let g:syntastic_enable_signs=1
