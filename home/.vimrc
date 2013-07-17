@@ -40,6 +40,8 @@ Bundle 'tpope/vim-rails'
 Bundle 'skwp/vim-rspec'
 "Bundle 'tpope/vim-cucumber'
 
+Bundle 'petejkim/go.vim'
+
 Bundle 'pangloss/vim-javascript'
 Bundle 'mmalecki/vim-node.js'
 Bundle 'kchmck/vim-coffee-script'
@@ -68,6 +70,7 @@ Bundle 'tpope/vim-markdown'
 "Bundle 'timcharper/textile.vim'
 
 Bundle 'vim-scripts/csv.vim'
+
 Bundle 'altercation/vim-colors-solarized'
 "Bundle 'godlygeek/csapprox'
 Bundle 'Lokaltog/vim-powerline'
@@ -202,23 +205,28 @@ endfunction
 
 filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
 
-if has("autocmd")
-  " In Makefiles, use real tabs, not tabs expanded to spaces
-  au FileType make set noexpandtab
+" In Makefiles, use real tabs, not tabs expanded to spaces
+au FileType make set noexpandtab
 
-  " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
-  au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
+" make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
+au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
 
-  " Remember last location in file, but not for commit messages.
-  " see :help last-position-jump
-  au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g`\"" | endif
+" Go: use tabs not spaces
+au FileType go set noexpandtab
+au BufWritePre *.go Fmt
 
-  au BufNewFile,BufRead *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
-  au BufNewFile,BufRead *.json set ft=javascript
-  au BufNewFile,BufRead Podfile,*.podspec set filetype=ruby
-  au BufNewFile,BufRead *.hamlc,*.hbs.haml,*.js.hamlbars set filetype=haml
-endif
+" clean trailing spaces
+au BufWritePre * kz|:%s/\s\+$//e|'z
+
+" Remember last location in file, but not for commit messages.
+" see :help last-position-jump
+au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
+  \| exe "normal! g`\"" | endif
+
+au BufNewFile,BufRead *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
+au BufNewFile,BufRead *.json set ft=javascript
+au BufNewFile,BufRead Podfile,*.podspec set filetype=ruby
+au BufNewFile,BufRead *.hamlc,*.hbs.haml,*.js.hamlbars set filetype=haml
 
 "------------------------------------------------------------------------------
 " status line
@@ -261,6 +269,9 @@ let g:ackprg="ag --nogroup --nocolor --column"
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=0
 let g:syntastic_auto_loc_list=2
+
+" syntastic macruby
+let g:syntastic_ruby_checker="macruby"
 
 "let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o', '\~$']
 "let g:nerdtree_tabs_open_on_gui_startup = 0
@@ -321,9 +332,7 @@ endfunction
 """""
 
 " Default mapping, <leader>n
-if has("autocmd")
-  autocmd VimEnter * silent! lcd %:p:h
-endif
+autocmd VimEnter * silent! lcd %:p:h
 
 "------------------------------------------------------------------------------
 " mappings
@@ -432,4 +441,3 @@ map <leader>n :NERDTreeToggle<CR>
 
 " nerd commenter
 map <leader>/ <plug>NERDCommenterToggle<CR>
-
