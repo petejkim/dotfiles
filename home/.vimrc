@@ -58,6 +58,7 @@ Bundle 'tpope/vim-haml'
 "Bundle 'digitaltoad/vim-jade'
 Bundle 'nono/vim-handlebars'
 "Bundle 'tpope/vim-liquid'
+Bundle 'heartsentwined/vim-emblem'
 
 "Bundle 'msanders/cocoa.vim'
 "Bundle 'Rip-Rip/clang_complete'
@@ -227,6 +228,7 @@ au BufNewFile,BufRead *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:
 au BufNewFile,BufRead *.json set ft=javascript
 au BufNewFile,BufRead Podfile,*.podspec set filetype=ruby
 au BufNewFile,BufRead *.hamlc,*.hbs.haml,*.js.hamlbars set filetype=haml
+au BufNewFile,BufRead *.emblem set filetype=emblem
 
 "------------------------------------------------------------------------------
 " status line
