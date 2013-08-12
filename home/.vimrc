@@ -273,7 +273,7 @@ let g:syntastic_quiet_warnings=0
 let g:syntastic_auto_loc_list=2
 
 " syntastic macruby
-let g:syntastic_ruby_checker="macruby"
+"let g:syntastic_ruby_checker="macruby"
 
 "let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o', '\~$']
 "let g:nerdtree_tabs_open_on_gui_startup = 0
