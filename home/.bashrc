@@ -7,7 +7,7 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-export PATH=".bundle/binstubs:$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:$PATH"
+export PATH=".bundle/binstubs:$HOME/.rbenv/bin:$PATH"
 
 #export DISPLAY=":0.0"
 export CLICOLOR=1

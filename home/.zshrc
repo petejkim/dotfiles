@@ -40,17 +40,17 @@ unsetopt correct_all
 # Customize to your needs...
 export GOROOT="$HOME/.go/current"
 export GOPATH="$HOME/workspace/go"
-export PATH=".bundle/binstubs:$GOPATH/bin:$GOROOT/bin:$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:$PATH"
+
+if [[ -z $TMUX ]]; then
+  export PATH=".bundle/binstubs:$GOPATH/bin:$GOROOT/bin:$HOME/.rbenv/bin:$PATH"
+fi
 #export DISPLAY=":0.0"
-#export MANPATH="/usr/local/man:$MANPATH"
-#export COPYFILE_DISABLE=true
 
 export CLICOLOR=1
-export ARCHFLAGS='-arch x86_64'
+#export ARCHFLAGS='-arch x86_64'
 export EDITOR='vim -f'
 
 #export LSCOLORS=gxfxcxdxbxegedabagacad
-#alias ls='ls -F'
 alias ls='ls --color=auto -F'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -66,9 +66,6 @@ alias load_env='export $(cat .env)'
 alias rspec='nocorrect rspec'
 
 eval "$(rbenv init - zsh)"
-
-#export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 . ~/.nvm/nvm.sh
 
@@ -95,4 +92,3 @@ if [ -f "${SSH_ENV}" ]; then
 else
   start_agent;
 fi
-
