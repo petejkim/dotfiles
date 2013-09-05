@@ -1,14 +1,24 @@
-export PATH=".bundle/bin:$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin:$PATH"
+[ -z "$PS1" ] && return
+
+HISTCONTROL=ignoreboth
+# append to the history file, don't overwrite it
+shopt -s histappend
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+if [[ -z $TMUX ]]; then
+  export PATH=".bundle/binstubs:$HOME/.rbenv/bin:$PATH"
+fi
 
 export DISPLAY=":0.0"
 export CLICOLOR=1
-export MANPATH="/usr/local/man:$MANPATH"
 export COPYFILE_DISABLE=true
 export ARCHFLAGS='-arch x86_64'
 export EDITOR='vim -f'
 
 function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
 }
 
 function parse_git_branch {
@@ -29,6 +39,7 @@ alias rm='rm -i'
 alias bi='bundle install --binstubs=.bundle/bin'
 alias gpom='git push origin master'
 alias gpr='git pull --rebase'
+alias load_env='export $(cat .env)'
 
 eval "$(rbenv init -)"
 
