@@ -41,9 +41,6 @@ unsetopt correct_all
 export GOROOT="$HOME/.go/current"
 export GOPATH="$HOME/workspace/go"
 
-if [[ -z $TMUX ]]; then
-  export PATH=".bundle/binstubs:$GOPATH/bin:$GOROOT/bin:$HOME/.rbenv/bin:$PATH"
-fi
 #export DISPLAY=":0.0"
 
 export CLICOLOR=1
@@ -65,7 +62,11 @@ alias load_env='export $(cat .env)'
 
 alias rspec='nocorrect rspec'
 
-eval "$(rbenv init - zsh)"
+if [[ -z $TMUX ]]; then
+  export PATH="$GOPATH/bin:$GOROOT/bin:$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+  export PATH=".bundle/binstubs:$PATH"
+fi
 
 . ~/.nvm/nvm.sh
 

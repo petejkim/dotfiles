@@ -7,8 +7,6 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-export PATH=".bundle/binstubs:$HOME/.rbenv/bin:$PATH"
-
 #export DISPLAY=":0.0"
 export CLICOLOR=1
 #export MANPATH="/usr/local/man:$MANPATH"
@@ -45,7 +43,11 @@ alias gpom='git push origin master'
 alias gpr='git pull --rebase'
 alias load_env='export $(cat .env)'
 
-eval "$(rbenv init -)"
+if [[ -z $TMUX ]]; then
+  export PATH="$GOPATH/bin:$GOROOT/bin:$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+  export PATH=".bundle/binstubs:$PATH"
+fi
 
 #export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
