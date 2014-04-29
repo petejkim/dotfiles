@@ -3,89 +3,93 @@
 "
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 "------------------------------------------------------------------------------
 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'scrooloose/nerdtree'
-"Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'mileszs/ack.vim'
-"Bundle 'wincent/Command-T'
-Bundle 'kien/ctrlp.vim'
-"Bundle 'fholgado/minibufexpl.vim'
-Bundle 'vim-scripts/bufkill.vim'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'scrooloose/nerdtree'
+"Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'mileszs/ack.vim'
+"Plugin 'wincent/Command-T'
+Plugin 'kien/ctrlp.vim'
+"Plugin 'fholgado/minibufexpl.vim'
+Plugin 'vim-scripts/bufkill.vim'
 
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
-Bundle 'ervandew/supertab'
-"Bundle 'vim-scripts/ZoomWin'
-Bundle 'vim-scripts/Rename2'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
+Plugin 'ervandew/supertab'
+"Plugin 'vim-scripts/ZoomWin'
+Plugin 'vim-scripts/Rename2'
 
-"Bundle 'sjl/gundo.vim'
-"Bundle 'garbas/vim-snipmate'
-"Bundle 'honza/snipmate-snippets'
+"Plugin 'sjl/gundo.vim'
+"Plugin 'garbas/vim-snipmate'
+"Plugin 'honza/snipmate-snippets'
 
-Bundle 'nathanaelkane/vim-indent-guides'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " languages
 
-Bundle 'tpope/vim-git'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails'
-Bundle 'skwp/vim-rspec'
-"Bundle 'tpope/vim-cucumber'
+Plugin 'tpope/vim-git'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
+Plugin 'skwp/vim-rspec'
+"Plugin 'tpope/vim-cucumber'
 
-Bundle 'petejkim/go.vim'
+Plugin 'petejkim/go.vim'
 
-Bundle 'pangloss/vim-javascript'
-Bundle 'mmalecki/vim-node.js'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'nono/jquery.vim'
-Bundle 'briancollins/vim-jst'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mmalecki/vim-node.js'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'nono/jquery.vim'
+Plugin 'briancollins/vim-jst'
 
-Bundle 'othree/html5.vim'
-Bundle 'hail2u/vim-css3-syntax'
-"Bundle 'ap/vim-css-color'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'groenewege/vim-less'
-"Bundle 'wavded/vim-stylus'
-Bundle 'tpope/vim-haml'
-"Bundle 'digitaltoad/vim-jade'
-Bundle 'nono/vim-handlebars'
-"Bundle 'tpope/vim-liquid'
-Bundle 'heartsentwined/vim-emblem'
+Plugin 'othree/html5.vim'
+Plugin 'hail2u/vim-css3-syntax'
+"Plugin 'ap/vim-css-color'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'groenewege/vim-less'
+"Plugin 'wavded/vim-stylus'
+Plugin 'tpope/vim-haml'
+"Plugin 'digitaltoad/vim-jade'
+Plugin 'nono/vim-handlebars'
+"Plugin 'tpope/vim-liquid'
+Plugin 'heartsentwined/vim-emblem'
 
-"Bundle 'msanders/cocoa.vim'
-"Bundle 'Rip-Rip/clang_complete'
+"Plugin 'msanders/cocoa.vim'
+"Plugin 'Rip-Rip/clang_complete'
 
-"Bundle 'github.com/ajf/puppet-vim'
-"Bundle 'bdd/vim-scala'
-"Bundle 'vim-scripts/Arduino-syntax-file'
+"Plugin 'github.com/ajf/puppet-vim'
+"Plugin 'bdd/vim-scala'
+"Plugin 'vim-scripts/Arduino-syntax-file'
 
-Bundle 'tpope/vim-markdown'
-"Bundle 'timcharper/textile.vim'
+Plugin 'tpope/vim-markdown'
+"Plugin 'timcharper/textile.vim'
 
-Bundle 'vim-scripts/csv.vim'
+Plugin 'vim-scripts/csv.vim'
 
-Bundle 'altercation/vim-colors-solarized'
-"Bundle 'godlygeek/csapprox'
-Bundle 'Lokaltog/vim-powerline'
+Plugin 'altercation/vim-colors-solarized'
+"Plugin 'godlygeek/csapprox'
+Plugin 'Lokaltog/vim-powerline'
 
-"------------------------------------------------------------------------------
-filetype plugin indent on
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" Put your non-Plugin stuff after this line
 
 "------------------------------------------------------------------------------
 " basic
@@ -211,6 +215,7 @@ au FileType make set noexpandtab
 
 " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
+au FileType go set nolist textwidth=0
 
 " Go: use tabs not spaces
 au FileType go set noexpandtab
@@ -269,7 +274,7 @@ let g:ackprg="ag --nogroup --nocolor --column"
 
 " https://github.com/carlhuda/janus/blob/master/janus/vim/tools/janus/after/plugin/syntastic.vim
 let g:syntastic_enable_signs=1
-let g:syntastic_quiet_warnings=0
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_auto_loc_list=2
 
 " syntastic macruby
