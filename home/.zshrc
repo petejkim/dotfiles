@@ -54,8 +54,9 @@ source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
 
 # Customize to your needs...
-export GOROOT="$HOME/.go/current"
-export GOPATH="$HOME/workspace/go"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+export MANPATH="/usr/local/man:$MANPATH"
+export COPYFILE_DISABLE=true
 
 if [[ -z $TMUX ]]; then
   export PATH=".bundle/binstubs:$GOPATH/bin:$GOROOT/bin:$HOME/.rbenv/bin:$PATH"
@@ -73,12 +74,24 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
 alias bi='bundle install'
 alias gpom='git push origin master'
 alias gpr='git pull --rebase'
 alias load_env='export $(cat .env)'
 alias rspec='nocorrect rspec'
 
-eval "$(rbenv init - zsh)"
+# ruby
+if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+export PATH=".bundle/binstubs:$HOME/.rbenv/bin:$PATH"
 
-. ~/.nvm/nvm.sh
+# node
+source $(brew --prefix nvm)/nvm.sh
+
+# go
+export GOROOT="$(brew --prefix go)"
+export GOPATH="$HOME/workspace/go"
+export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
