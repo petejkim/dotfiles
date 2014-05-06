@@ -54,37 +54,37 @@ source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
 
 # Customize to your needs...
-export GOROOT="$HOME/.go/current"
-export GOPATH="$HOME/workspace/go"
-
-#export DISPLAY=":0.0"
-
 export CLICOLOR=1
-#export ARCHFLAGS='-arch x86_64'
 export EDITOR='vim -f'
 
-#export LSCOLORS=gxfxcxdxbxegedabagacad
 alias ls='ls --color=auto -F'
+alias l='ls -l'
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-
-alias l='ls -l'
 
 alias bi='bundle install'
 alias gpom='git push origin master'
 alias gpr='git pull --rebase'
 alias load_env='export $(cat .env)'
 
-alias rspec='nocorrect rspec'
-
 if [[ -z $TMUX ]]; then
-  export PATH="$GOPATH/bin:$GOROOT/bin:$HOME/.rbenv/bin:$PATH"
+  # ruby
+  export PATH=".bundle/binstubs:$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
-  export PATH=".bundle/binstubs:$PATH"
-fi
 
-. ~/.nvm/nvm.sh
+  # node
+  . ~/.nvm/nvm.sh
+
+  # go
+  export GOROOT=".go/current"
+  export GOPATH="$HOME/workspace/go"
+  export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+fi
 
 # ssh agent
 SSH_ENV="$HOME/.ssh/environment"
