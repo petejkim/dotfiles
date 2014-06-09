@@ -73,17 +73,15 @@ alias gpr='git pull --rebase'
 alias load_env='export $(cat .env)'
 
 if [[ -z $TMUX ]]; then
-  # ruby
-  export PATH=".bundle/binstubs:$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
-
-  # node
-  . ~/.nvm/nvm.sh
-
-  # go
-  export GOROOT=".go/current"
-  export GOPATH="$HOME/workspace/go"
-  export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
+  if [[ -e ~/.rubyinit ]]; then
+    source ~/.rubyinit
+  fi
+  if [[ -e ~/.nodeinit ]]; then
+    source ~/.nodeinit
+  fi
+  if [[ -e ~/.goinit ]]; then
+    source ~/.goinit
+  fi
 fi
 
 # ssh agent
