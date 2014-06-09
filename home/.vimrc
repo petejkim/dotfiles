@@ -101,7 +101,7 @@ set encoding=utf-8
 set visualbell     " shut vim up
 set noerrorbells
 set history=1000
-set clipboard+=unnamed " yanks go to clipboard
+"set clipboard=unnamed " yanks go to clipboard
 set autoread
 "set mouse=a
 
