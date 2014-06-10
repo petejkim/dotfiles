@@ -4,4 +4,5 @@ home/.vim/_temp
 home/.vim/_backup
 home/.vim/.netrwhist
 home/.vim/backups
+workspace
 .vagrant
