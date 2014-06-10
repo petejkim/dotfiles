@@ -16,12 +16,12 @@ if [[ ! -e ~/.rbenv ]]; then
 fi
 echo 'export PATH=".bundle/binstubs:$HOME/.rbenv/bin:$PATH"' > ~/.rubyinit
 echo 'eval "$(rbenv init -)"' >> ~/.rubyinit
-chmod +x ~/.rubyinit
 source ~/.rubyinit
 if [[ ! -e ~/.rbenv/versions/2.1.2 ]]; then
   rbenv install 2.1.2
   rbenv global 2.1.2
 fi
+gem install bundler
 
 echo "Installing Node.js..."
 if [[ ! -e ~/.nvm ]]; then
@@ -31,6 +31,7 @@ echo 'source ~/.nvm/nvm.sh' > ~/.nodeinit
 source ~/.nodeinit
 nvm install v0.10.28
 nvm alias default 0.10
+npm install -g coffee-script
 
 echo "Installing Go..."
 if [[ ! -e ~/.go/1.2.2 ]]; then
@@ -45,7 +46,11 @@ ln -fs ~/.go/1.2.2 ~/.go/current
 echo 'export GOROOT="$HOME/.go/current"' > ~/.goinit
 echo 'export GOPATH="$HOME/workspace/go"' >> ~/.goinit
 echo 'export PATH="$GOROOT/bin:$PATH"' >> ~/.goinit
-chmod +x ~/.goinit
+source ~/.goinit
+go get -u github.com/tools/godep
+go get -u code.google.com/p/go.tools/cmd/goimports
+go get -u github.com/golang/lint/golint
+go get -u github.com/nsf/gocode
 
 echo "Installing Oh-my-zsh..."
 if [[ ! -e ~/.oh-my-zsh ]]; then

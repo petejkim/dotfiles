@@ -40,7 +40,10 @@ Plugin 'tpope/vim-rails'
 Plugin 'skwp/vim-rspec'
 "Plugin 'tpope/vim-cucumber'
 
-Plugin 'petejkim/go.vim'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'jnwhiteh/vim-golang'
+"Plugin 'petejkim/go.vim'
+Plugin 'cespare/vim-go-templates'
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'mmalecki/vim-node.js'
@@ -176,6 +179,7 @@ set wildignore+=*/.bundle/**
 set wildignore+=*.gem
 set wildignore+=*/log/**
 set wildignore+=*/tmp/**
+set wildignore+=*/_vendor/**
 
 "------------------------------------------------------------------------------
 " backup & swap
@@ -220,6 +224,8 @@ au FileType go set nolist textwidth=0
 " Go: use tabs not spaces
 au FileType go set noexpandtab
 au BufWritePre *.go Fmt
+" Goimport
+let g:gofmt_command = "goimports"
 
 " clean trailing spaces
 au BufWritePre * kz|:%s/\s\+$//e|'z
