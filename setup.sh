@@ -45,7 +45,7 @@ fi
 ln -fs ~/.go/1.2.2 ~/.go/current
 echo 'export GOROOT="$HOME/.go/current"' > ~/.goinit
 echo 'export GOPATH="$HOME/workspace/go"' >> ~/.goinit
-echo 'export PATH="$GOROOT/bin:$PATH"' >> ~/.goinit
+echo 'export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"' >> ~/.goinit
 source ~/.goinit
 go get -u github.com/tools/godep
 go get -u code.google.com/p/go.tools/cmd/goimports
