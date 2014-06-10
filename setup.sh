@@ -53,19 +53,16 @@ if [[ ! -e ~/.oh-my-zsh ]]; then
 fi
 
 echo "Installing Dotfiles..."
-if [[ ! -e ~/workspace/dotfiles ]]; then
-  git clone https://github.com/petejkim/dotfiles.git ~/workspace/dotfiles
-fi
-ln -fs ~/workspace/dotfiles/home/.ackrc ~/.ackrc
-ln -fs ~/workspace/dotfiles/home/.bundle ~/.bundle
-ln -fs ~/workspace/dotfiles/home/.gemrc ~/.gemrc
-ln -fs ~/workspace/dotfiles/home/.inputrc ~/.inputrc
-ln -fs ~/workspace/dotfiles/home/.irbrc ~/.irbrc
-ln -fs ~/workspace/dotfiles/home/.tmux.conf ~/.tmux.conf
-ln -fs ~/workspace/dotfiles/home/.vimrc ~/.vimrc
-ln -fs ~/workspace/dotfiles/home/.vim ~/.vim
-ln -fs ~/workspace/dotfiles/home/.zshrc ~/.zshrc
-cp -n ~/workspace/dotfiles/home/.gitconfig ~/.gitconfig
+ln -fs /vagrant/home/.ackrc ~/.ackrc
+ln -fs /vagrant/home/.bundle ~/.bundle
+ln -fs /vagrant/home/.gemrc ~/.gemrc
+ln -fs /vagrant/home/.inputrc ~/.inputrc
+ln -fs /vagrant/home/.irbrc ~/.irbrc
+ln -fs /vagrant/home/.tmux.conf ~/.tmux.conf
+ln -fs /vagrant/home/.vimrc ~/.vimrc
+ln -fs /vagrant/home/.vim ~/.vim
+ln -fs /vagrant/home/.zshrc ~/.zshrc
+cp -n /vagrant/home/.gitconfig ~/.gitconfig
 
 echo "Installing Vim Plugins... (this takes a while)"
 if [[ ! -e ~/.vim/bundle/Vundle.vim ]]; then
