@@ -14,8 +14,9 @@ if [[ ! -e ~/.rbenv ]]; then
     git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
   fi
 fi
-echo 'export PATH=".bundle/binstubs:$HOME/.rbenv/bin:$PATH"' > ~/.rubyinit
+echo 'export PATH=".rbenv/bin:$PATH"' > ~/.rubyinit
 echo 'eval "$(rbenv init -)"' >> ~/.rubyinit
+echo 'export PATH=".bundle/binstubs:$PATH"' > ~/.rubyinit
 source ~/.rubyinit
 if [[ ! -e ~/.rbenv/versions/2.1.2 ]]; then
   rbenv install 2.1.2
