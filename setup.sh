@@ -3,9 +3,7 @@ set -e
 
 cd $HOME
 mkdir -p ~/downloads
-if [[ ! -e ~/workspace ]]; then
-  ln -s /vagrant/workspace ~/workspace
-fi
+mkdir -p ~/workspace
 
 echo "Installing Ruby..."
 if [[ ! -e ~/.rbenv ]]; then
