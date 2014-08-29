@@ -16,7 +16,7 @@ if [[ ! -e ~/.rbenv ]]; then
 fi
 echo 'export PATH=".rbenv/bin:$PATH"' > ~/.rubyinit
 echo 'eval "$(rbenv init -)"' >> ~/.rubyinit
-echo 'export PATH=".bundle/binstubs:$PATH"' > ~/.rubyinit
+echo 'export PATH=".bundle/binstubs:$PATH"' >> ~/.rubyinit
 source ~/.rubyinit
 if [[ ! -e ~/.rbenv/versions/2.1.2 ]]; then
   rbenv install 2.1.2
