@@ -40,10 +40,12 @@ Plugin 'tpope/vim-rails'
 Plugin 'skwp/vim-rspec'
 "Plugin 'tpope/vim-cucumber'
 
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
-Plugin 'jnwhiteh/vim-golang'
+"Plugin 'nsf/gocode', {'rtp': 'vim/'}
+"Plugin 'jnwhiteh/vim-golang'
 "Plugin 'petejkim/go.vim'
-Plugin 'cespare/vim-go-templates'
+"Plugin 'cespare/vim-go-templates'
+
+Plugin 'fatih/vim-go'
 
 Plugin 'pangloss/vim-javascript'
 Plugin 'mmalecki/vim-node.js'
@@ -57,6 +59,7 @@ Plugin 'hail2u/vim-css3-syntax'
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'groenewege/vim-less'
 "Plugin 'wavded/vim-stylus'
+Plugin 'slim-template/vim-slim.git'
 Plugin 'tpope/vim-haml'
 "Plugin 'digitaltoad/vim-jade'
 Plugin 'nono/vim-handlebars'
@@ -169,6 +172,7 @@ set wildignore+=.git,.svn
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
 set wildignore+=*DS_Store*
+set wildignore+=*/vendor/assets/**
 set wildignore+=*/vendor/rails/**
 set wildignore+=*/vendor/cache/**
 set wildignore+=*/vendor/bundle/**
@@ -219,13 +223,9 @@ au FileType make set noexpandtab
 
 " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
-au FileType go set nolist textwidth=0
 
-" Go: use tabs not spaces
-au FileType go set noexpandtab
-au BufWritePre *.go Fmt
-" Goimport
-let g:gofmt_command = "goimports"
+" to tab highlight for go
+au FileType go set nolist textwidth=0
 
 " clean trailing spaces
 au BufWritePre * kz|:%s/\s\+$//e|'z
