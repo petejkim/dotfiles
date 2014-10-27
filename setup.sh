@@ -1,9 +1,23 @@
 #!/bin/bash
 set -e
 
+if [ $(uname) = 'Darwin' ]; then
+  is_osx=true
+fi
+
 cd $HOME
 mkdir -p ~/downloads
 mkdir -p ~/workspace
+
+if [ -n $is_osx ]; then
+  echo "Installing Homebrew..."
+  if [ ! -e /usr/local/bin/brew ]; then
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+  brew update
+  brew doctor
+  brew install ack axel git macvim tmux wget zsh hg
+fi
 
 echo "Installing Ruby..."
 if [[ ! -e ~/.rbenv ]]; then
@@ -16,9 +30,10 @@ echo 'export PATH=".rbenv/bin:$PATH"' > ~/.rubyinit
 echo 'eval "$(rbenv init -)"' >> ~/.rubyinit
 echo 'export PATH=".bundle/binstubs:$PATH"' >> ~/.rubyinit
 source ~/.rubyinit
+ruby_ver='2.1.4'
 if [[ ! -e ~/.rbenv/versions/2.1.2 ]]; then
-  rbenv install 2.1.2
-  rbenv global 2.1.2
+  rbenv install "$ruby_ver"
+  rbenv global "$ruby_ver"
 fi
 gem install bundler
 
@@ -28,20 +43,26 @@ if [[ ! -e ~/.nvm ]]; then
 fi
 echo 'source ~/.nvm/nvm.sh' > ~/.nodeinit
 source ~/.nodeinit
-nvm install v0.10.28
-nvm alias default 0.10
+node_ver='0.10'
+nvm install "$node_ver"
+nvm alias default "$node_ver"
 npm install -g coffee-script
 
 echo "Installing Go..."
-if [[ ! -e ~/.go/1.2.2 ]]; then
-  gotar='go1.2.2.linux-amd64.tar.gz'
+go_ver='1.3.3'
+if [[ ! -e ~/.go/"$go_ver" ]]; then
+  if [ -n $is_osx ]; then
+    gotar='go'"$go_ver"'.darwin-amd64-osx10.8.tar.gz'
+  else
+    gotar='go'"$go_ver"'.linux-amd64.tar.gz'
+  fi
   curl 'https://storage.googleapis.com/golang/'"$gotar" -o ~/downloads/$gotar
   mkdir -p ~/.go
   rm -rf ~/.go/go
   tar -C ~/.go -xzf ~/downloads/$gotar
-  mv ~/.go/go ~/.go/1.2.2
+  mv ~/.go/go ~/.go/"$go_ver"
 fi
-ln -fs ~/.go/1.2.2 ~/.go/current
+ln -fs ~/.go/"$go_ver" ~/.go/current
 echo 'export GOROOT="$HOME/.go/current"' > ~/.goinit
 echo 'export GOPATH="$HOME/workspace/go"' >> ~/.goinit
 echo 'export PATH="$GOPATH/bin:$GOROOT/bin:$PATH"' >> ~/.goinit
@@ -57,16 +78,20 @@ if [[ ! -e ~/.oh-my-zsh ]]; then
 fi
 
 echo "Installing Dotfiles..."
-ln -fs /vagrant/home/.ackrc ~/.ackrc
-ln -fs /vagrant/home/.bundle ~/.bundle
-ln -fs /vagrant/home/.gemrc ~/.gemrc
-ln -fs /vagrant/home/.inputrc ~/.inputrc
-ln -fs /vagrant/home/.irbrc ~/.irbrc
-ln -fs /vagrant/home/.tmux.conf ~/.tmux.conf
-ln -fs /vagrant/home/.vimrc ~/.vimrc
-ln -fs /vagrant/home/.vim ~/.vim
-ln -fs /vagrant/home/.zshrc ~/.zshrc
-cp -n /vagrant/home/.gitconfig ~/.gitconfig
+dotfiles_path="$HOME/workspace/dotfiles"
+if [[ ! -e "$dotfiles_path" ]]; then
+  git clone git@github.com:petejkim/dotfiles.git "$dotfiles_path"
+  ln -fs "$dotfiles_path"/home/.ackrc ~/.ackrc
+  ln -fs "$dotfiles_path"/home/.bundle ~/.bundle
+  ln -fs "$dotfiles_path"/home/.gemrc ~/.gemrc
+  ln -fs "$dotfiles_path"/home/.inputrc ~/.inputrc
+  ln -fs "$dotfiles_path"/home/.irbrc ~/.irbrc
+  ln -fs "$dotfiles_path"/home/.tmux.conf ~/.tmux.conf
+  ln -fs "$dotfiles_path"/home/.vimrc ~/.vimrc
+  ln -fs "$dotfiles_path"/home/.vim ~/.vim
+  ln -fs "$dotfiles_path"/home/.zshrc ~/.zshrc
+  cp -n "$dotfiles_path"/home/.gitconfig ~/.gitconfig
+fi
 
 echo "Installing Vim Plugins... (this takes a while)"
 if [[ ! -e ~/.vim/bundle/Vundle.vim ]]; then

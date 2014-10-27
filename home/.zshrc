@@ -53,19 +53,31 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 unsetopt correct_all
 
+if [ $(uname) = 'Darwin' ]; then
+  is_osx=true
+fi
+
 # Customize to your needs...
 export CLICOLOR=1
 export EDITOR='vim -f'
+if [ -n $is_osx ]; then
+  export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+  export MANPATH="/usr/local/man:$MANPATH"
+  export ARCHFLAGS='-arch x86_64'
+  export COPYFILE_DISABLE=true
+  export LSCOLORS=gxfxcxdxbxegedabagacad
+  alias ls='ls -F'
+else
+  alias ls='ls --color=auto -F'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
 
-alias ls='ls --color=auto -F'
 alias l='ls -l'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
-
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 
 alias bi='bundle install'
 alias gpom='git push origin master'
