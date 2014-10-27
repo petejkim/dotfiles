@@ -61,7 +61,6 @@ fi
 export CLICOLOR=1
 export EDITOR='vim -f'
 if [ -n $is_osx ]; then
-  export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
   export MANPATH="/usr/local/man:$MANPATH"
   export ARCHFLAGS='-arch x86_64'
   export COPYFILE_DISABLE=true
@@ -87,6 +86,7 @@ alias govim='goop exec vim'
 alias godog='goop exec'
 
 if [[ -z $TMUX ]]; then
+  export PATH="/usr/local/heroku/bin:$PATH"
   if [[ -e ~/.rubyinit ]]; then
     source ~/.rubyinit
   fi
@@ -100,6 +100,3 @@ fi
 
 # prevent C-s from locking up terminal
 stty -ixon
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"

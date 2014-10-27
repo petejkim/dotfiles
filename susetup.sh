@@ -5,8 +5,11 @@ if [ $(uname) = 'Darwin' ]; then
   is_osx=true
 fi
 
-# if not osx
-if [ -z $ios_osx ]; then
+if [ -n $ios_osx ]; then
+  if [ -e /etc/zshenv ]; then
+    mv /etc/zshenv /etc/zprofile
+  fi
+else
   if [[ ! -e /etc/ssh/.ssh_regen_done ]]; then
     sed -ri 's|PermitRootLogin without-password|PermitRootLogin no|' /etc/ssh/sshd_config
     sed -ri 's|#PasswordAuthentication yes|PasswordAuthentication no|' /etc/ssh/sshd_config
