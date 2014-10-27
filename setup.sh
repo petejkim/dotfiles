@@ -16,7 +16,7 @@ if [ -n $is_osx ]; then
   fi
   brew update
   brew doctor
-  brew install ack axel git macvim tmux wget zsh hg
+  brew install ack axel git macvim tmux wget zsh hg the_silver_searcher
 fi
 
 echo "Installing Ruby..."
