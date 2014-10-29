@@ -60,7 +60,8 @@ fi
 # Customize to your needs...
 export CLICOLOR=1
 export EDITOR='vim -f'
-if [ -n $is_osx ]; then
+if [ $is_osx ]; then
+  export PATH="/usr/local/bin:$PATH"
   export MANPATH="/usr/local/man:$MANPATH"
   export ARCHFLAGS='-arch x86_64'
   export COPYFILE_DISABLE=true

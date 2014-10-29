@@ -9,7 +9,7 @@ cd $HOME
 mkdir -p ~/downloads
 mkdir -p ~/workspace
 
-if [ -n $is_osx ]; then
+if [ $is_osx ]; then
   echo "Installing Homebrew..."
   if [ ! -e /usr/local/bin/brew ]; then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -26,7 +26,7 @@ if [[ ! -e ~/.rbenv ]]; then
     git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
   fi
 fi
-echo 'export PATH=".rbenv/bin:$PATH"' > ~/.rubyinit
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' > ~/.rubyinit
 echo 'eval "$(rbenv init -)"' >> ~/.rubyinit
 echo 'export PATH=".bundle/binstubs:$PATH"' >> ~/.rubyinit
 source ~/.rubyinit
@@ -51,7 +51,7 @@ npm install -g coffee-script
 echo "Installing Go..."
 go_ver='1.3.3'
 if [[ ! -e ~/.go/"$go_ver" ]]; then
-  if [ -n $is_osx ]; then
+  if [ $is_osx ]; then
     gotar='go'"$go_ver"'.darwin-amd64-osx10.8.tar.gz'
   else
     gotar='go'"$go_ver"'.linux-amd64.tar.gz'

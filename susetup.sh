@@ -5,7 +5,7 @@ if [ $(uname) = 'Darwin' ]; then
   is_osx=true
 fi
 
-if [ -n $ios_osx ]; then
+if [ $ios_osx ]; then
   if [ -e /etc/zshenv ]; then
     mv /etc/zshenv /etc/zprofile
   fi
