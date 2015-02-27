@@ -31,7 +31,7 @@ echo 'eval "$(rbenv init -)"' >> ~/.rubyinit
 echo 'export PATH=".bundle/binstubs:$PATH"' >> ~/.rubyinit
 source ~/.rubyinit
 ruby_ver='2.1.4'
-if [[ ! -e ~/.rbenv/versions/2.1.2 ]]; then
+if [[ ! -e ~/.rbenv/versions/"$ruby_ver" ]]; then
   rbenv install "$ruby_ver"
   rbenv global "$ruby_ver"
 fi

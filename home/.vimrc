@@ -205,6 +205,12 @@ let g:solarized_visibility="high"
 set background=dark
 colorscheme solarized
 
+" indent guide
+let g:indent_guides_enable_on_vim_startup=10
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=233
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
+
 "------------------------------------------------------------------------------
 " filetypes
 " https://raw.github.com/carlhuda/janus/master/janus/vim/core/before/plugin/filetypes.vim
@@ -226,6 +232,7 @@ au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
 
 " to tab highlight for go
 au FileType go set nolist textwidth=0
+let g:go_fmt_command = "goimports"
 
 " clean trailing spaces
 au BufWritePre * kz|:%s/\s\+$//e|'z
