@@ -125,3 +125,15 @@ if [ -f "${SSH_ENV}" ]; then
 else
   start_agent;
 fi
+
+alias cdrs='cd $HOME/go/src/github.com/nitrous-io/rise-server'
+alias cdrc='cd $HOME/go/src/github.com/nitrous-io/rise-cli-go'
+alias cdrn='cd $HOME/code/rise-nginx'
+alias cdpw='cd $HOME/code/pubstorm-www'
+alias cdpb='cd $HOME/code/pubstorm-blog'
+alias ngx="sudo /opt/openresty/nginx/sbin/nginx -p /opt/openresty -c /opt/openresty/nginx/conf/nginx.conf"
+
+export PS1="N $PS1"
+export PATH="lua_modules/bin:/opt/openresty/luajit/bin:/opt/openresty/nginx/sbin:$PATH"
+export PATH="/opt/tmux/bin:/opt/vim/bin:$PATH"
+export PATH="node_modules/.bin:$PATH"

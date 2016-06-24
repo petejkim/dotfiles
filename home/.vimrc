@@ -34,10 +34,11 @@ Plugin 'nathanaelkane/vim-indent-guides'
 
 " languages
 
+Plugin 'dbext.vim'
 Plugin 'tpope/vim-git'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
-Plugin 'skwp/vim-rspec'
+"Plugin 'vim-ruby/vim-ruby'
+"Plugin 'tpope/vim-rails'
+"Plugin 'skwp/vim-rspec'
 "Plugin 'tpope/vim-cucumber'
 
 "Plugin 'nsf/gocode', {'rtp': 'vim/'}
@@ -53,18 +54,19 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'nono/jquery.vim'
 Plugin 'briancollins/vim-jst'
 
+Plugin 'slm-lang/vim-slm'
 Plugin 'othree/html5.vim'
 Plugin 'hail2u/vim-css3-syntax'
 "Plugin 'ap/vim-css-color'
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'groenewege/vim-less'
+"Plugin 'cakebaker/scss-syntax.vim'
+"Plugin 'groenewege/vim-less'
 "Plugin 'wavded/vim-stylus'
-Plugin 'slim-template/vim-slim.git'
-Plugin 'tpope/vim-haml'
-"Plugin 'digitaltoad/vim-jade'
-Plugin 'nono/vim-handlebars'
+"Plugin 'slim-template/vim-slim.git'
+"Plugin 'tpope/vim-haml'
+Plugin 'digitaltoad/vim-pug'
+"Plugin 'nono/vim-handlebars'
 "Plugin 'tpope/vim-liquid'
-Plugin 'heartsentwined/vim-emblem'
+"Plugin 'heartsentwined/vim-emblem'
 
 "Plugin 'msanders/cocoa.vim'
 "Plugin 'Rip-Rip/clang_complete'
@@ -180,6 +182,7 @@ set wildignore+=*/vendor/submodules/**
 set wildignore+=*/vendor/plugins/**
 set wildignore+=*/vendor/gems/**
 set wildignore+=*/.bundle/**
+set wildignore+=*/node_modules/**
 set wildignore+=*.gem
 set wildignore+=*/log/**
 set wildignore+=*/tmp/**
@@ -199,15 +202,19 @@ set undofile
 
 "colorscheme
 
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
+let &t_8f="\e[38;2;%lu;%lu;%lum"
+let &t_8b="\e[48;2;%lu;%lu;%lum"
+set guicolors
 let g:solarized_termtrans=1
-let g:solarized_visibility="high"
-set background=dark
+let g:solarized_force_truecolor=1
+let g:solarized_visibility="normal"
+set background=light
 colorscheme solarized
 
 " indent guide
-let g:indent_guides_enable_on_vim_startup=10
-let g:indent_guides_auto_colors = 0
+"let g:indent_guides_enable_on_vim_startup=10
+let g:indent_guides_auto_colors=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=233
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=234
 
@@ -290,8 +297,14 @@ let g:syntastic_enable_signs=1
 let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_auto_loc_list=2
 
+"let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
 " syntastic macruby
 "let g:syntastic_ruby_checker="macruby"
+
+" disable C-c being bound to sql complete
+let g:omni_sql_no_default_maps = 1
 
 "let NERDTreeIgnore=['\.pyc$', '\.pyo$', '\.rbc$', '\.rbo$', '\.class$', '\.o', '\~$']
 "let g:nerdtree_tabs_open_on_gui_startup = 0
@@ -360,7 +373,7 @@ autocmd VimEnter * silent! lcd %:p:h
 "
 let mapleader=","
 
-map <C-c> <ESC>
+noremap <C-c> <ESC>
 
 map <leader>] :tabn<CR>
 map <leader>[ :tabp<CR>
@@ -461,3 +474,6 @@ map <leader>n :NERDTreeToggle<CR>
 
 " nerd commenter
 map <leader>/ <plug>NERDCommenterToggle<CR>
+
+"forward delete
+inoremap <C-d> <Del>
