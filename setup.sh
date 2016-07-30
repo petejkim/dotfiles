@@ -30,7 +30,7 @@ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' > ~/.rubyinit
 echo 'eval "$(rbenv init -)"' >> ~/.rubyinit
 echo 'export PATH=".bundle/binstubs:$PATH"' >> ~/.rubyinit
 source ~/.rubyinit
-ruby_ver='2.1.4'
+ruby_ver='2.3.1'
 if [[ ! -e ~/.rbenv/versions/"$ruby_ver" ]]; then
   rbenv install "$ruby_ver"
   rbenv global "$ruby_ver"
@@ -43,13 +43,13 @@ if [[ ! -e ~/.nvm ]]; then
 fi
 echo 'source ~/.nvm/nvm.sh' > ~/.nodeinit
 source ~/.nodeinit
-node_ver='0.10'
+node_ver='4.4.6'
 nvm install "$node_ver"
 nvm alias default "$node_ver"
 npm install -g coffee-script
 
 echo "Installing Go..."
-go_ver='1.3.3'
+go_ver='1.6.2'
 if [[ ! -e ~/.go/"$go_ver" ]]; then
   if [ $is_osx ]; then
     gotar='go'"$go_ver"'.darwin-amd64-osx10.8.tar.gz'
